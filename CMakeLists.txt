@@ -10,8 +10,10 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
 
 find_package(FUSE REQUIRED)
+set(THREADS_PREFER_PTHREAD_FLAG ON)
+find_package(Threads REQUIRED)
 
 include_directories(${FUSE_INCLUDE_DIR})
 add_executable(fuse-example fuse-example.c)
-target_link_libraries(fuse-example ${FUSE_LIBRARIES})
+target_link_libraries(fuse-example ${FUSE_LIBRARIES} Threads::Threads)
 
